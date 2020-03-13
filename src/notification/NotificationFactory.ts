@@ -6,6 +6,8 @@ export class NotificationFactory {
     if (type === NotificationType.EMAIL) {
       if (option.aws_ses) {
         return new AwsSesService(option);
+      }else{
+        //return new NodeMailer(option);
       }
     }
   }
