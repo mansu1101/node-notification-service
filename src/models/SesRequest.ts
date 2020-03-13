@@ -1,4 +1,4 @@
-export type SesRequest ={
-    fromEmailAddress: string;
-    region: string
-}
+export type SesRequest = {
+  fromEmailAddress: string;
+  region: string;
+};

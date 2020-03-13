@@ -11,7 +11,6 @@ export class Index {
   public async sendEmail(emailDetails: object) {
     await this.notification.send(NotificationType.EMAIL, emailDetails);
   }
-
 }
 
 /*

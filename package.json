@@ -1,6 +1,6 @@
 {
   "name": "node-notification-service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -40,8 +40,6 @@
   "files": [
     "lib/**/*"
   ],
-
-
   "dependencies": {
     "@types/node": "^13.9.0",
     "@types/nodemailer": "^6.4.0",
