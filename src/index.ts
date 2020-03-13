@@ -13,14 +13,15 @@ export class Index {
   }
 }
 
-/*
 async function testThisClass() {
   let obj = new Index( { aws_ses: true, fromEmailAddress: 'mansujoshi89@gmail.com', region: "ap-south-1"});
   let sentEmail = await obj.sendEmail({
-    userId: 'mansujoshi89@gmail.com',
+    to: 'mansujoshi89@gmail.com',
     message: 'this is my message',
+    subject: "Heading comes here",
+    htmlText: "Hi Dear User,<br> <br>Greeting!<br>Here is your OTP for password Reset " + "<br><b>OTP: " + 123456 +
+      "</b><br><br> Thanks! <br>Team InTime-Tec"
   });
   console.log('Email sent Successfully');
 }
 testThisClass();
-*/

@@ -13,19 +13,18 @@ export class AwsSesService implements INotification {
   senderEmail: string;
   ses: any;
   constructor(sesConfig: any) {
-    console.log('Hey create AWS object............');
     this.senderEmail = sesConfig.fromEmailAddress;
     //TODO:comment below one when pusing the code
     AWS.config.credentials;
     AWS.config.update({ region: sesConfig.region });
     this.ses = new AWS.SES();
+    console.log('AWS SES Object Created Successfully!');
   }
   private verifyEmailAddress(emailId: string, callback: Function) {
     AWS.verifyEmailAddress({ EmailAddress: emailId }, callback);
   }
 
   async send(emailId: string, body: any) {
-    console.log('Hey calling send methog of AWSSES calss ............', emailId, body);
     let ses_mail: any;
     ses_mail = ses_mail + 'To: ' + emailId + '\n';
     ses_mail = ses_mail + 'Subject:' + body.subject + '\n';
@@ -33,12 +32,10 @@ export class AwsSesService implements INotification {
     ses_mail = ses_mail + 'Content-Type: multipart/mixed; boundary="NextPart"\n\n';
     ses_mail = ses_mail + '--NextPart\n';
     ses_mail = ses_mail + 'Content-Type: text/html; charset=us-ascii\n\n';
-    ses_mail =
-      ses_mail +
-      'Hi Dear User,<br> <br>Greeting!<br>Here is your OTP for password Reset ' +
-      '<br><b>OTP: ' +
-      body.otp +
-      '</b><br><br> Thanks! <br>Team InTime-Tec';
+    if(body.htmlText){
+      ses_mail = ses_mail + body.htmlText;
+    }
+
     return new Promise(async (resolve, reject) => {
       try {
         let params = {

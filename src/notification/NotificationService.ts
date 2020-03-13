@@ -8,6 +8,6 @@ export class NotificationService {
   }
 
   public async send(notificationType: NotificationType, details: any) {
-    await NotificationFactory.getInstance(notificationType, this.option).send(details.userId, details);
+    await NotificationFactory.getInstance(notificationType, this.option).send(details.to, details);
   }
 }
