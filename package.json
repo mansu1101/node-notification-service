@@ -7,7 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -20,7 +25,7 @@
     "nodemailer",
     "awsmailer"
   ],
-  "author": "MansuJoshi",
+  "author": "MJ",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mansu1101/node-notification-service/issues"
@@ -35,9 +40,8 @@
   "files": [
     "lib/**/*"
   ],
-  "prepare": "npm run build",
-  "prepublishOnly": "npm run lint",
-  "preversion": "npm run lint",
+
+
   "dependencies": {
     "@types/node": "^13.9.0",
     "@types/nodemailer": "^6.4.0",
