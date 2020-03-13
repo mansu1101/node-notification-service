@@ -32,7 +32,7 @@ export class AwsSesService implements INotification {
     ses_mail = ses_mail + 'Content-Type: multipart/mixed; boundary="NextPart"\n\n';
     ses_mail = ses_mail + '--NextPart\n';
     ses_mail = ses_mail + 'Content-Type: text/html; charset=us-ascii\n\n';
-    if(body.htmlText){
+    if (body.htmlText) {
       ses_mail = ses_mail + body.htmlText;
     }
 
