@@ -1,3 +1,5 @@
+import { EmailRequest } from '../models/EmailRequest';
+
 export interface INotification {
-  send(id: any, message: any): Promise<any>;
+  send(emailRequest: EmailRequest): Promise<any>;
 }
