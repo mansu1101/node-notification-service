@@ -47,7 +47,7 @@ export class AwsSesService implements INotification {
         let params = {
           RawMessage: { Data: new Buffer(ses_mail) },
           Destinations: [emailRequest.to],
-          Source: 'AWS SES SERVICE <' + this.senderEmail + '>\'',
+          Source: 'AWS SES SERVICE <' + this.senderEmail + ">'",
         };
         //we can call above verify method to check if domain specific email send is there or not.
         this.ses.sendRawEmail(params, (err: any, res: any) => {

@@ -3,8 +3,8 @@ export type NodeMailerConfigRequest = {
   host: string;
   port: number;
   auth: {
-    user: string,
-    password: string
+    user: string;
+    password: string;
   };
   secure?: boolean;
-}
+};

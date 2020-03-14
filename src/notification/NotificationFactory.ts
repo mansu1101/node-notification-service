@@ -11,8 +11,10 @@ export class NotificationFactory {
       } else if (Utility.isValidNodeMailerConfig(option)) {
         return new NodeMailer(option);
       } else {
-        console.info('Incorrect configuration supplied, Check documentation for more details\n' +
-          'https://www.npmjs.com/package/node-notification-service/');
+        console.info(
+          'Incorrect configuration supplied, Check documentation for more details\n' +
+            'https://www.npmjs.com/package/node-notification-service/',
+        );
         return null;
       }
     }
