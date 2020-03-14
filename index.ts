@@ -1,7 +1,7 @@
-import { NotificationService } from './notification/NotificationService';
-import { NotificationType } from './enums/Notification';
-import { EmailRequest } from './models/EmailRequest';
-import { SMSRequest } from './models/SMSRequest';
+import { NotificationService } from './src/notification/NotificationService';
+import { NotificationType } from './src/enums/Notification';
+import { EmailRequest } from './src/models/EmailRequest';
+import { SMSRequest } from './src/models/SMSRequest';
 
 export class Notification {
   notification: NotificationService;

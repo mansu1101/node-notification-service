@@ -20,7 +20,7 @@ Below example we are configuring AWS-SES service to send email.
 ``` js
 const {Notification} = require('node-notification-service');
 let notifyService = new Notification({ aws_ses: true, fromEmailAddress: "your aws-ses configured email address", region: "your ses service region"})
-let emailResonse = await notifyService.send({
+let emailResonse = await notifyService.sendEmail({
                     to:"emaild whom you want to send the email",
                     subject: "Your email subject",
                     message: "your email body",
@@ -42,7 +42,7 @@ let notifyService = new Notification({    service: 'gmail',
                                             password: 'senderPassword',
                                           }
                                         })
-let emailResonse = await notifyService.send({
+let emailResonse = await notifyService.sendEmail({
                     to:"emaild whom you want to send the email",
                     subject: "Your email subject",
                     message: "your email body",
