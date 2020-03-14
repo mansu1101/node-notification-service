@@ -44,26 +44,6 @@ export class AwsSesService implements INotification {
 
     return new Promise(async (resolve, reject) => {
       try {
-        /*let params = {
-          RawMessage: { Data: new Buffer(ses_mail) },
-          Destinations:[ /!* required *!/
-            {
-              Destination: { /!* required *!/
-                CcAddresses: emailRequest.cc,
-                ToAddresses: emailRequest.to
-              },
-            }
-          ],
-          Source: 'AWS SES SERVICE <' + this.senderEmail + ">'",
-        };
-        //we can call above verify method to check if domain specific email send is there or not.
-        this.ses.sendRawEmail(params, (err: any, res: any) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(res);
-          }
-        });*/
         let body: any;
         if (emailRequest.html) {
           body = {

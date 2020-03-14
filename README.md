@@ -24,7 +24,7 @@ let emailResonse = await notifyService.sendEmail({
                     to: ["emaild whom you want to send the email"],
                     subject: "Your email subject",
                     message: "your email body",
-                    htmlText: "<h1>html can be binded here.</h1>"
+                    html: "<h1>html can be binded here.</h1>"
                    });
 console.log("Email sent success by SES service!!");
 ```
@@ -49,7 +49,7 @@ let emailResponse = await notifyService.sendEmail({
                     to: ["emaild whom you want to send the email"],
                     subject: "Your email subject",
                     message: "your email body",
-                    htmlText: "<h1>html can be binded here.</h1>"
+                    html: "<h1>html can be binded here.</h1>"
                    });
 console.log("Email sent by node-Mailer success!!");
 ```
