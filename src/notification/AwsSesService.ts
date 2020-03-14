@@ -20,7 +20,7 @@ export class AwsSesService implements INotification {
     //TODO:comment below one when pusing the code
     AWS.config.credentials;
     AWS.config.update({ region: sesConfig.region });
-    this.ses = new AWS.SES({apiVersion: '2010-12-01'});
+    this.ses = new AWS.SES({ apiVersion: '2010-12-01' });
     console.log('AWS SES Object Created Successfully!');
   }
 
@@ -65,44 +65,46 @@ export class AwsSesService implements INotification {
           }
         });*/
         let body: any;
-        if(emailRequest.html){
+        if (emailRequest.html) {
           body = {
-            Html:{
-              Charset: "UTF-8",
-              Data:  emailRequest.html
-            }
-          }
-        }else {
+            Html: {
+              Charset: 'UTF-8',
+              Data: emailRequest.html,
+            },
+          };
+        } else {
           body = {
-            Text:{
-              Charset: "UTF-8",
-              Data: emailRequest.message
-            }
-          }
+            Text: {
+              Charset: 'UTF-8',
+              Data: emailRequest.message,
+            },
+          };
         }
         let params = {
-          Destination: { /* required */
+          Destination: {
+            /* required */
             CcAddresses: emailRequest.cc,
-            ToAddresses: emailRequest.to
+            ToAddresses: emailRequest.to,
           },
-          Message: { /* required */
+          Message: {
+            /* required */
             Body: body,
             Subject: {
               Charset: 'UTF-8',
-              Data:  emailRequest.subject
-            }
+              Data: emailRequest.subject,
+            },
           },
-          Source: 'AWS SES SERVICE <' + this.senderEmail + ">'", /* required */
+          Source: 'AWS SES SERVICE <' + this.senderEmail + ">'" /* required */,
         };
 
-// Create the promise and SES service object
+        // Create the promise and SES service object
         var sendPromise = this.ses.sendEmail(params).promise();
-        sendPromise.then(
-          function(data: any) {
+        sendPromise
+          .then(function(data: any) {
             console.log(data.MessageId);
             resolve(data.MessageId);
-          }).catch(
-          function(err: any) {
+          })
+          .catch(function(err: any) {
             console.error(err, err.stack);
             reject(err.stack);
           });
