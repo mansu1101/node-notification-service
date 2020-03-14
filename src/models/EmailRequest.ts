@@ -1,6 +1,10 @@
 export type EmailRequest = {
-  to: string;
-  message: string;
+  from?: string;
+  to: string[];
+  cc?: string[];
+  bcc?: string[];
+  attachments?: any[];
+  html?: string;
   subject: string;
-  htmlText?: string;
+  message: string;
 };

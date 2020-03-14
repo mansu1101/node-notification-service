@@ -20,7 +20,7 @@ export class AwsSesService implements INotification {
     //TODO:comment below one when pusing the code
     AWS.config.credentials;
     AWS.config.update({ region: sesConfig.region });
-    this.ses = new AWS.SES();
+    this.ses = new AWS.SES({apiVersion: '2010-12-01'});
     console.log('AWS SES Object Created Successfully!');
   }
 
@@ -29,7 +29,6 @@ export class AwsSesService implements INotification {
   }
 
   async send(emailRequest: EmailRequest) {
-    console.log('email :', emailRequest);
     let ses_mail: any;
     ses_mail = ses_mail + 'To: ' + emailRequest.to + '\n';
     ses_mail = ses_mail + 'Subject:' + emailRequest.subject + '\n';
@@ -37,17 +36,24 @@ export class AwsSesService implements INotification {
     ses_mail = ses_mail + 'Content-Type: multipart/mixed; boundary="NextPart"\n\n';
     ses_mail = ses_mail + '--NextPart\n';
     ses_mail = ses_mail + 'Content-Type: text/html; charset=us-ascii\n\n';
-    if (emailRequest.htmlText) {
-      ses_mail = ses_mail + emailRequest.htmlText;
+    if (emailRequest.html) {
+      ses_mail = ses_mail + emailRequest.html;
     } else {
       ses_mail = ses_mail + emailRequest.message;
     }
 
     return new Promise(async (resolve, reject) => {
       try {
-        let params = {
+        /*let params = {
           RawMessage: { Data: new Buffer(ses_mail) },
-          Destinations: [emailRequest.to],
+          Destinations:[ /!* required *!/
+            {
+              Destination: { /!* required *!/
+                CcAddresses: emailRequest.cc,
+                ToAddresses: emailRequest.to
+              },
+            }
+          ],
           Source: 'AWS SES SERVICE <' + this.senderEmail + ">'",
         };
         //we can call above verify method to check if domain specific email send is there or not.
@@ -57,7 +63,49 @@ export class AwsSesService implements INotification {
           } else {
             resolve(res);
           }
-        });
+        });*/
+        let body: any;
+        if(emailRequest.html){
+          body = {
+            Html:{
+              Charset: "UTF-8",
+              Data:  emailRequest.html
+            }
+          }
+        }else {
+          body = {
+            Text:{
+              Charset: "UTF-8",
+              Data: emailRequest.message
+            }
+          }
+        }
+        let params = {
+          Destination: { /* required */
+            CcAddresses: emailRequest.cc,
+            ToAddresses: emailRequest.to
+          },
+          Message: { /* required */
+            Body: body,
+            Subject: {
+              Charset: 'UTF-8',
+              Data:  emailRequest.subject
+            }
+          },
+          Source: 'AWS SES SERVICE <' + this.senderEmail + ">'", /* required */
+        };
+
+// Create the promise and SES service object
+        var sendPromise = this.ses.sendEmail(params).promise();
+        sendPromise.then(
+          function(data: any) {
+            console.log(data.MessageId);
+            resolve(data.MessageId);
+          }).catch(
+          function(err: any) {
+            console.error(err, err.stack);
+            reject(err.stack);
+          });
       } catch (e) {
         reject(e);
       }

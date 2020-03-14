@@ -13,6 +13,7 @@ export class Notification {
   public async sendEmail(emailDetails: EmailRequest) {
     await this.notification.send(NotificationType.EMAIL, emailDetails);
   }
+
   public async sendSMS(smsDetails: SMSRequest) {
     return 'Implementation coming soon!!!';
     //await this.notification.sendSMS(NotificationType.SMS, smsDetails);
