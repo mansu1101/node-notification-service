@@ -8,7 +8,7 @@ export class NotificationService {
   }
 
   public async send(notificationType: NotificationType, details: any) {
-    await NotificationFactory.getInstance(notificationType, this.option).send(details.to, details);
+    await NotificationFactory.getInstance(notificationType, this.option).send(details);
   }
   public async sendSMS(notificationType: NotificationType, details: any) {
     await NotificationFactory.getInstance(notificationType, this.option).send(details.mobileNumber, details);

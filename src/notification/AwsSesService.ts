@@ -29,6 +29,7 @@ export class AwsSesService implements INotification {
   }
 
   async send(emailRequest: EmailRequest) {
+    console.log("email :", emailRequest);
     let ses_mail: any;
     ses_mail = ses_mail + 'To: ' + emailRequest.to + '\n';
     ses_mail = ses_mail + 'Subject:' + emailRequest.subject + '\n';
