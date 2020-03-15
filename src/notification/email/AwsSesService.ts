@@ -1,8 +1,8 @@
 import { INotification } from './INotification';
 
 let AWS = require('aws-sdk');
-import { SesRequest } from '../models/SesRequest';
-import { EmailRequest } from '../models/EmailRequest';
+import { SesRequest } from '../../models/SesRequest';
+import { EmailRequest } from '../../models/EmailRequest';
 //let config = require("../config/config");
 
 //Below lines are required in local testing with AWS-SES service, //to use this credentials we need to get the access kry from aws console

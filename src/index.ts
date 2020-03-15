@@ -1,12 +1,23 @@
-import { NotificationService } from './notification/NotificationService';
+import * as dotenv from 'dotenv';
+import { join } from 'path';
+
+dotenv.config({
+  path: join(__dirname, '.env'),
+});
+import { NotificationService } from './notification/email/NotificationService';
 import { NotificationType } from './enums/Notification';
 import { EmailRequest } from './models/EmailRequest';
 import { SMSRequest } from './models/SMSRequest';
+import { Utility } from './utility/Utility';
+
+//const testconfig = require('../test.json');
 
 export class Notification {
   notification: NotificationService;
+  private _option: any;
 
   constructor(option: any) {
+    this._option = option;
     this.notification = new NotificationService(option);
   }
 
@@ -15,7 +26,10 @@ export class Notification {
   }
 
   public async sendSMS(smsDetails: SMSRequest) {
-    return 'Implementation coming soon!!!';
-    //await this.notification.sendSMS(NotificationType.SMS, smsDetails);
+    if (Utility.isValidNexmoConfig(this._option)) {
+      await this.notification.sendSMS(NotificationType.SMS, smsDetails);
+    } else if (Utility.isValidTwilioConfig(this._option)) {
+      await this.notification.sendSMS(NotificationType.SMS, smsDetails);
+    }
   }
 }

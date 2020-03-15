@@ -1,5 +1,11 @@
 export type SMSRequest = {
-  to: number;
+  to: string;
+  from?: string,
   message: string;
-  subject: string;
+  subject?: string;
+  services:{
+    nexmo?: boolean,
+    twilio?: boolean,
+    aws_sns?: boolean
+  }
 };

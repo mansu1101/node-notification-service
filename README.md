@@ -99,3 +99,51 @@ Send email to multiple recipients using Node-Mailer service.
   });
   console.log('email send by node mailer');
 ```
+
+## Start with SMS services
+In SMS services we are using two most popular libraries for sending the SMS as text.
+1) Nexmo
+2) Twilio 
+
+Let's quickly start with **Nexmo** SMS service to send SMS using this service we need 
+api_key and api_secret. **Where can I find my API key and API secret?**. Your API key and secret can be found and updated under the "API settings" section on the https://dashboard.nexmo.com/getting-started-guide page in the Dashboard.  
+If you are in trial period then need to verify test number. 
+**Nexmo trial period - How to add numbers to list of permitted destinations?** Verify your test number from here https://dashboard.nexmo.com/test-numbers
+
+##Quick start with Nexmo example
+
+```js
+const {Notification} = require("node-notification-service");
+let notification = new Notification({
+    apiKey: "YOUR_NEXMO_ACCOUNT_API_KEY",// *required
+    apiSecret: "YOUR_NEXMO_ACCOUNT_API_SECRET",// *required
+    services: { nexmo: true },// *required
+    from: "YOUR REGISTER/VERIFYIED MOBILE NUMBER",// *required, make sure your number appended with + and country code before mobile number. like +91 1234456782
+  });
+notification.sendSMS({
+    to: "MOBILE_NUMBER_WHOM_YOU_WANT_TO_SEND_SMS",// *required, make sure your number appended with + and country code before mobile number. like +91 1234456782
+    message: 'Nexmo serivce sending message to you...',// *required
+    services: { nexmo: true },
+    subject: "YOUR SUBJECT HERE"
+  });
+```
+
+2) Let's quickly start with **Twilio** SMS service to send SMS using this service we need accountSid and authToken.
+You can start with Free trial period. **How to Work with your Free Twilio Trial Account?** https://www.twilio.com/docs/usage/tutorials/how-to-use-your-free-trial-account
+
+```js
+const {Notification} = require("node-notification-service");
+ let notification = new Notification({
+    accountSid: "YOUR_TWILIO_ACCOUNT_ACCOUNTSID",// *required
+    authToken: "YOUR_TWILIO_ACCOUNT_AUTHTOKEN",// *required
+    services: { twilio: true },// *required
+    from: testconfig.from,// *required, make sure your number appended with + and country code before mobile number. like +91 1234456782
+  });
+
+//send sms 
+notification.sendSMS({
+    to: "MOBILE_NUMBER_WHOM_YOU_WANT_TO_SEND_SMS",// *required, make sure your number appended with + and country code before mobile number. like +91 1234456782
+    message: 'Hello From twilio write your message here',
+    services: { twilio: true },
+  });
+```

@@ -1,8 +1,8 @@
 import { INotification } from './INotification';
 import * as nodeMailer from 'nodemailer';
-import { NodeMailerEmailRequest } from '../models/NodeMailerRequest';
-import { NodeMailerConfigRequest } from '../models/NodeMailerConfigRequest';
-import { EmailRequest } from '../models/EmailRequest';
+import { NodeMailerEmailRequest } from '../../models/NodeMailerRequest';
+import { NodeMailerConfigRequest } from '../../models/NodeMailerConfigRequest';
+import { EmailRequest } from '../../models/EmailRequest';
 
 export class NodeMailer implements INotification {
   private transporter: any;
