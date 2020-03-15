@@ -15,7 +15,7 @@ export class NotificationFactory {
       } else {
         console.info(
           '-------------> Incorrect configuration supplied, Check logs for detail or follow below documentation for more details\n' +
-          'https://www.npmjs.com/package/node-notification-service/ \n\n',
+            'https://www.npmjs.com/package/node-notification-service/ \n\n',
         );
         return null;
       }
@@ -27,7 +27,7 @@ export class NotificationFactory {
       } else {
         console.info(
           ' -------------> Incorrect configuration supplied, Check logs for detail or follow documentation for more details\n' +
-          'https://www.npmjs.com/package/node-notification-service/ \n\n',
+            'https://www.npmjs.com/package/node-notification-service/ \n\n',
         );
         return null;
       }

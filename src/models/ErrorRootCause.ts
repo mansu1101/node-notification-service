@@ -1,10 +1,6 @@
 export type ErrorRootCauseType = {
-  config:{
-
-  }
-}
+  config: {};
+};
 export class ErrorRootCause {
-  public static find(error: ErrorRootCauseType): any {
-
-  }
+  public static find(error: ErrorRootCauseType): any {}
 }

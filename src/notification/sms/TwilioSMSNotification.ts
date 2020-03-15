@@ -17,18 +17,21 @@ export class TwilioSMSNotification implements ISMSNotification {
     return new Promise((reject, resolve) => {
       try {
         let from = details.from || this._option.from;
-        this.smsSender.messages.create({
-          body: details.message,
-          to: details.to,
-          from: from,
-        }, (err: any, responseData: any) => {
-          if (err) {
-            console.log(err);
-            reject(err);
-          } else {
-            resolve(responseData);
-          }
-        });
+        this.smsSender.messages.create(
+          {
+            body: details.message,
+            to: details.to,
+            from: from,
+          },
+          (err: any, responseData: any) => {
+            if (err) {
+              console.log(err);
+              reject(err);
+            } else {
+              resolve(responseData);
+            }
+          },
+        );
       } catch (e) {
         console.log(e);
         reject(e);
