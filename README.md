@@ -54,12 +54,7 @@ let emailResponse = await notifyService.sendEmail({
 console.log("Email sent by node-Mailer success!!");
 ```
 
-##Quick help for node-mailer service
-if you are using your own gmail or any other service provider for sending email, you might get this error.
-**Error: Invalid login: 535-5.7.8 Username and Password not accepted**
-To resolve the above error goto below link and give full access.(Allow less secure apps: ON) 
-https://myaccount.google.com/lesssecureapps?pli=1
-Then try again running your application
+
 
 ##More examples
 Send email to multiple recipients using AWS-SES service.
@@ -99,6 +94,12 @@ Send email to multiple recipients using Node-Mailer service.
   });
   console.log('email send by node mailer');
 ```
+##Quick help for node-mailer service
+if you are using your own gmail or any other service provider for sending email, you might get this error.
+**Error: Invalid login: 535-5.7.8 Username and Password not accepted**
+To resolve the above error goto below link and give full access.(Allow less secure apps: ON) 
+https://myaccount.google.com/lesssecureapps?pli=1
+Then try again running your application
 
 ## Start with SMS services
 In SMS services we are using two most popular libraries for sending the SMS as text.
