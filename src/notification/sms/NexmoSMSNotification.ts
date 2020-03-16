@@ -3,7 +3,6 @@ import { SMSRequest } from '../../models/SMSRequest';
 
 require('dotenv').config({ path: __dirname + '/.env' });
 const Nexmo = require('nexmo');
-const testconfig = require('../../../test.json');
 
 export class NexmoSMSNotification implements ISMSNotification {
   private _option: any;
