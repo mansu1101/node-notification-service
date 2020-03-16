@@ -10,7 +10,6 @@ import { EmailRequest } from './models/EmailRequest';
 import { SMSRequest } from './models/SMSRequest';
 import { Utility } from './utility/Utility';
 
-
 export class Notification {
   notification: NotificationService;
   private _option: any;
